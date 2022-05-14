@@ -19,7 +19,7 @@
  *   '',  'bb'  => 'bb'
  */
 function concatenateStrings(value1, value2) {
-  return string1 + string2;
+  return value1 + value2;
 }
 
 
@@ -34,8 +34,8 @@ function concatenateStrings(value1, value2) {
  *   'b'     => 1
  *   ''      => 0
  */
-function getStringLength(string) {
-  return string.length;
+function getStringLength(value) {
+  return value.length;
 }
 
 /**
@@ -95,8 +95,8 @@ function getFirstChar(value) {
  *   'cat'              => 'cat'
  *   '\tHello, World! ' => 'Hello, World!'
  */
-function removeLeadingAndTrailingWhitespaces(value) {
-  
+function removeLeadingAndTrailingWhitespaces(/* value */) {
+  return 
 }
 
 /**
@@ -111,7 +111,7 @@ function removeLeadingAndTrailingWhitespaces(value) {
  *   'cat', 3 => 'catcatcat'
  */
 function repeatString(/* value, count */) {
-  
+
 }
 
 /**
@@ -127,7 +127,7 @@ function repeatString(/* value, count */) {
  *   'ABABAB','BA' => 'ABAB'
  */
 function removeFirstOccurrences(/* str, value */) {
-  
+
 }
 
 /**
@@ -142,7 +142,7 @@ function removeFirstOccurrences(/* str, value */) {
  *   '<a>' => 'a'
  */
 function unbracketTag(/* str */) {
-  
+
 }
 
 
@@ -157,7 +157,7 @@ function unbracketTag(/* str */) {
  *  'abcdefghijklmnopqrstuvwxyz' => 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
  */
 function convertToUpperCase(/* str */) {
-  
+
 }
 
 /**
@@ -176,7 +176,7 @@ function convertToUpperCase(/* str */) {
  *   'info@gmail.com' => ['info@gmail.com']
  */
 function extractEmails(/* str */) {
-  
+
 }
 
 /**
@@ -203,7 +203,7 @@ function extractEmails(/* str */) {
  *
  */
 function getRectangleString(/* width, height */) {
-  
+
 }
 
 
@@ -224,7 +224,7 @@ function getRectangleString(/* width, height */) {
  *
  */
 function encodeToRot13(/* str */) {
-  
+
 }
 
 /**
@@ -241,7 +241,7 @@ function encodeToRot13(/* str */) {
  *   isString(new String('test')) => true
  */
 function isString(/* value */) {
-  
+
 }
 
 
@@ -270,7 +270,7 @@ function isString(/* value */) {
  *   'K♠' => 51
  */
 function getCardId(/* value */) {
-  
+
 }
 
 
