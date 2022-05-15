@@ -111,10 +111,13 @@ function removeLeadingAndTrailingWhitespaces(value) {
  *   'cat', 3 => 'catcatcat'
  */
 function repeatString(value, count) {
+  let result;
+  let diffValue = '';
   for (let i = 0; i < count; i += 1) {
-    this.value += value;
+    result = `${diffValue}${value}`;
+    diffValue = result;
   }
-  return value;
+  return result;
 }
 
 /**
@@ -205,15 +208,45 @@ function extractEmails(str) {
  *             '└──────────┘\n'
  *
  */
-function getRectangleString(/* width, height */) {
-  /* let horizLine = '─';
-  let vertLine = '│';
-  let leftUpper = '┌';
-  let rigthUpper = '┐';
-  let leftDown = '└';
-  let rightDown = '┘';
-  let rectangle; */
-  throw new Error('Not implemented');
+function getRectangleString(width, height) {
+  const horizLine = '─';
+  const vertLine = '│';
+  const leftUpper = '┌';
+  const rigthUpper = '┐';
+  const leftDown = '└';
+  const rightDown = '┘';
+  let rectangle = '';
+  for (let i = 1; i <= height; i += 1) {
+    for (let j = 1; j <= width; j += 1) {
+      if (j === 1 && i === 1) {
+        rectangle += leftUpper;
+      }
+      if (i === 1 && j !== 1 && j !== width) {
+        rectangle += horizLine;
+      }
+      if (i === 1 && j === width) {
+        rectangle += `${rigthUpper}\n`;
+      }
+      if (i === height && j === 1) {
+        rectangle += leftDown;
+      }
+      if (i === height && j !== 1 && j !== width) {
+        rectangle += horizLine;
+      }
+      if (i === height && j === width) {
+        rectangle += `${rightDown}\n`;
+      }
+      if (i !== 1 && j === 1 && i !== height) {
+        rectangle += vertLine;
+      }
+      if (i !== 1 && i !== height && j === width) {
+        rectangle += `${vertLine}\n`;
+      }
+      if (i !== 1 && i !== height && j !== 1 && j !== width) {
+        rectangle += ' ';
+      }
+    }
+  } return rectangle;
 }
 
 
@@ -233,8 +266,18 @@ function getRectangleString(/* width, height */) {
  *    => 'NOPQRSTUVWXYZABCDEFGHIJKLMnopqrstuvwxyzabcdefghijklm'
  *
  */
-function encodeToRot13(/* str */) {
-  throw new Error('Not implemented');
+function encodeToRot13(str) {
+  const usualAlph = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz ';
+  const rot13Alph = 'NOPQRSTUVWXYZABCDEFGHIJKLMnopqrstuvwxyzabcdefghijklm ';
+  let result = '';
+  for (let i = 0; i < str.length; i += 1) {
+    if (usualAlph.includes(str[i])) {
+      result += rot13Alph[usualAlph.indexOf(str[i])];
+    } else {
+      result += str[i];
+    }
+  }
+  return result;
 }
 
 /**
@@ -250,8 +293,16 @@ function encodeToRot13(/* str */) {
  *   isString('test') => true
  *   isString(new String('test')) => true
  */
-function isString(/* value */) {
-  throw new Error('Not implemented');
+function isString(value) {
+  let result;
+  if (value instanceof String) {
+    result = true;
+  } else if (typeof value === 'string') {
+    result = true;
+  } else {
+    result = false;
+  }
+  return result;
 }
 
 
@@ -279,8 +330,14 @@ function isString(/* value */) {
  *   'Q♠' => 50
  *   'K♠' => 51
  */
-function getCardId(/* value */) {
-  throw new Error('Not implemented');
+function getCardId(value) {
+  const playingCards = [
+    'A♣', '2♣', '3♣', '4♣', '5♣', '6♣', '7♣', '8♣', '9♣', '10♣', 'J♣', 'Q♣', 'K♣',
+    'A♦', '2♦', '3♦', '4♦', '5♦', '6♦', '7♦', '8♦', '9♦', '10♦', 'J♦', 'Q♦', 'K♦',
+    'A♥', '2♥', '3♥', '4♥', '5♥', '6♥', '7♥', '8♥', '9♥', '10♥', 'J♥', 'Q♥', 'K♥',
+    'A♠', '2♠', '3♠', '4♠', '5♠', '6♠', '7♠', '8♠', '9♠', '10♠', 'J♠', 'Q♠', 'K♠',
+  ];
+  return playingCards.indexOf(value);
 }
 
 
