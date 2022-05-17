@@ -249,10 +249,12 @@ function isPrime(n) {
  */
 function toNumber(value, def) {
   let result;
-  if (+value.isNaN) {
+  if (parseInt(value, 10) === undefined || parseInt(value, 10) === null) {
     result = def;
-  } else if (typeof +value === 'number') {
-    result = +value;
+  } else if (Number.isNaN(parseInt(value, 10))) {
+    result = def;
+  } else if (typeof parseInt(value, 10) === 'number') {
+    result = parseInt(value, 10);
   } else {
     result = def;
   }
