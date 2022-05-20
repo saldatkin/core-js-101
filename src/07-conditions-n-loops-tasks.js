@@ -430,8 +430,8 @@ function getDigitalRoot(num) {
  *   '{)' = false
  *   '{[(<{[]}>)]}' = true
  */
-function isBracketsBalanced(str) {
-  const openBracesArr = ['{', '[', '(', '<'];
+function isBracketsBalanced(/* str */) {
+  /* const openBracesArr = ['{', '[', '(', '<'];
   const closeBracesArr = ['}', ']', ')', '>'];
   const havePairArr = [];
   function isEmpty(s) {
@@ -465,9 +465,11 @@ function isBracketsBalanced(str) {
     let result = false;
     s.split('').forEach((element) => {
       if (openBracesArr.includes(element)) {
-        havePairArr.push(s.includes(closeBracesArr.join('').charAt(openBracesArr.indexOf(element))));
+        havePairArr.push(s.includes(closeBracesArr.join('')
+        .charAt(openBracesArr.indexOf(element))));
       } else if (closeBracesArr.includes(element)) {
-        havePairArr.push(s.includes(openBracesArr.join('').charAt(closeBracesArr.indexOf(element))));
+        havePairArr.push(s.includes(openBracesArr.join('')
+        .charAt(closeBracesArr.indexOf(element))));
       }
       if (!havePairArr.includes(false)) {
         result = true;
@@ -480,7 +482,8 @@ function isBracketsBalanced(str) {
   }
   return (havePair(str) && isFirstOpen(str)
   && isLastClose(str)
-  && (openCount(str) === closeCount(str)));
+  && (openCount(str) === closeCount(str))); */
+  throw new Error('Not implemented');
 }
 
 
@@ -522,8 +525,9 @@ function toNaryString(num, n) {
  *   ['/web/favicon.ico', '/web-scripts/dump', '/verbalizer/logs'] => '/'
  */
 function getCommonDirectoryPath(/* pathes */) {
-  const delim = '/';
-  
+  /* const delim = '/';
+  pathes.forEach((element) ) */
+  throw new Error('Not implemented');
 }
 
 
