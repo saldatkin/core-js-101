@@ -477,11 +477,11 @@ function sortCitiesArray(arr) {
  *           [0,0,0,1,0],
  *           [0,0,0,0,1]]
  */
-function getIdentityMatrix(/* n */) {
-  /* const arr = new Array(n);
-  return arr.map((item, index) => arr[index].fill(0, 0, n - 1).fill(1, index, index)); */
-  throw new Error('Not implemented');
+function getIdentityMatrix(n) {
+  const arrNElem = new Array(n).fill(0);
+  return (arrNElem).map((a, i) => (new Array(n)).fill(0).map((b, j) => ((i === j) ? 1 : 0)));
 }
+
 
 /**
  * Creates an array of integers from the specified start to end (inclusive)
@@ -585,6 +585,7 @@ function selectMany(/* arr, childrenSelector */) {
  *   [[[ 1, 2, 3]]], [ 0, 0, 1 ]      => 2        (arr[0][0][1])
  */
 function getElementByIndexes(/* arr, indexes */) {
+  /* indexes.map((element) => new Array(element)); */
   throw new Error('Not implemented');
 }
 

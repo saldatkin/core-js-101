@@ -524,10 +524,27 @@ function toNaryString(num, n) {
  *   ['/web/assets/style.css', '/.bin/mocha',  '/read.me'] => '/'
  *   ['/web/favicon.ico', '/web-scripts/dump', '/verbalizer/logs'] => '/'
  */
-function getCommonDirectoryPath(/* pathes */) {
-  /* const delim = '/';
-  pathes.forEach((element) ) */
-  throw new Error('Not implemented');
+function getCommonDirectoryPath(pathes) {
+  const delim = '/';
+  let commonDir = '';
+  const sortPathes = pathes.concat().sort();
+  const firstStr = sortPathes[0];
+  const lastStr = sortPathes[sortPathes.length - 1];
+  for (let i = 0; i < firstStr.length; i += 1) {
+    if (firstStr[i] === lastStr[i]) {
+      commonDir += firstStr[i];
+    } else {
+      break;
+    }
+  }
+  commonDir = commonDir.split(delim);
+  commonDir.pop();
+  if (commonDir.length > 0) {
+    commonDir = `${commonDir.join(delim)}/`;
+  } else {
+    commonDir = commonDir.join('');
+  }
+  return commonDir;
 }
 
 
@@ -550,6 +567,11 @@ function getCommonDirectoryPath(/* pathes */) {
  *
  */
 function getMatrixProduct(/* m1, m2 */) {
+  /* const result = new Array(m1.length).fill(0);
+  result.map(() => new Array(m2[0].length).fill(0));
+  return result.map((row, i) =>
+  row.map((val, j) => m1[i].reduce((sum, elem, index) =>
+  sum + (elem * m2[index][j]), 0))); */
   throw new Error('Not implemented');
 }
 
