@@ -444,9 +444,15 @@ function sortCitiesArray(arr) {
     const type = typeof a.country;
     if (type === 'string' && ISNAN) {
       if (a.country !== b.country) {
-        result = a.country > b.country;
+        if (a.country > b.country) {
+          result = 1;
+        } else {
+          result = -1;
+        }
+      } else if (a.city > b.city) {
+        result = 1;
       } else {
-        result = a.city > b.city;
+        result = -1;
       }
     } else if (type === 'string' && !ISNAN) {
       if (a.country !== b.country) {
@@ -547,10 +553,15 @@ function distinct(arr) {
  *    "Poland" => ["Lodz"]
  *   }
  */
-function group(/* array, keySelector, valueSelector */) {
-  /* const countryArray = array.map((item) => keySelector);
-  const citiesArray = countryArray.map((item) => item.push(valueSelector)); */
-  throw new Error('Not implemented');
+function group(array, keySelector, valueSelector) {
+  const countryGroup = array.reduce(() => array.reduce((obj, item) => {
+    const key = keySelector(item);
+    const object = obj;
+    object[key] = object[key] || [];
+    object[key].push(valueSelector(item));
+    return object;
+  }, {}));
+  return Object.keys(countryGroup).map((key) => [key, countryGroup[key]]);
 }
 
 
@@ -567,8 +578,9 @@ function group(/* array, keySelector, valueSelector */) {
  *   [[1, 2], [3, 4], [5, 6]], (x) => x     =>   [ 1, 2, 3, 4, 5, 6 ]
  *   ['one','two','three'], x=>x.split('')  =>   ['o','n','e','t','w','o','t','h','r','e','e']
  */
-function selectMany(/* arr, childrenSelector */) {
-  throw new Error('Not implemented');
+function selectMany(arr, childrenSelector) {
+  const newArr = arr.map((item) => childrenSelector(item));
+  return newArr.flat(Infinity);
 }
 
 
