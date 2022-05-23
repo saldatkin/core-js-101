@@ -402,60 +402,30 @@ function getDigitalRoot(num) {
  *   '{)' = false
  *   '{[(<{[]}>)]}' = true
  */
-function isBracketsBalanced(/* str */) {
-  /* const openBracesArr = ['{', '[', '(', '<'];
+function isBracketsBalanced(str) {
+  const openBracesArr = ['{', '[', '(', '<'];
   const closeBracesArr = ['}', ']', ')', '>'];
-  const havePairArr = [];
-  function isEmpty(s) {
-    return s === '';
-  }
-  function isFirstOpen(s) {
-    return openBracesArr.includes(s[0]);
-  }
-  function isLastClose(s) {
-    return closeBracesArr.includes(s[s.length - 1]);
-  }
-  function openCount(s) {
-    let count = 0;
-    s.split('').forEach((element) => {
-      if (openBracesArr.includes(element)) {
-        count += 1;
-      }
-    });
-    return count;
-  }
-  function closeCount(s) {
-    let count = 0;
-    s.split('').forEach((element) => {
-      if (closeBracesArr.includes(element)) {
-        count += 1;
-      }
-    });
-    return count;
-  }
-  function havePair(s) {
-    let result = false;
-    s.split('').forEach((element) => {
-      if (openBracesArr.includes(element)) {
-        havePairArr.push(s.includes(closeBracesArr.join('')
-        .charAt(openBracesArr.indexOf(element))));
-      } else if (closeBracesArr.includes(element)) {
-        havePairArr.push(s.includes(openBracesArr.join('')
-        .charAt(closeBracesArr.indexOf(element))));
-      }
-      if (!havePairArr.includes(false)) {
-        result = true;
-      }
-    });
-    return result;
-  }
-  if (isEmpty(str)) {
+  const stack = [];
+  if (str === '' || str === '[]' || str === '()' || str === '{}' || str === '<>') {
     return true;
   }
-  return (havePair(str) && isFirstOpen(str)
-  && isLastClose(str)
-  && (openCount(str) === closeCount(str))); */
-  throw new Error('Not implemented');
+  for (let i = 0; i < str.length; i += 1) {
+    const char = str[i];
+    if (openBracesArr.includes(char)) {
+      stack.push(char);
+    } else {
+      if (stack.length === 0) {
+        return false;
+      }
+      if (stack.length > 0) {
+        const check = stack.pop();
+        if (openBracesArr.indexOf(check) !== closeBracesArr.indexOf(char)) {
+          return false;
+        }
+      }
+    }
+  }
+  return (stack.length === 0);
 }
 
 
@@ -584,8 +554,30 @@ function getMatrixProduct(m1, m2) {
  *    [    ,   ,    ]]
  *
  */
-function evaluateTicTacToePosition(/* position */) {
-  throw new Error('Not implemented');
+function evaluateTicTacToePosition(position) {
+  for (let i = 0; i < position.length; i += 1) {
+    const j = 1;
+    if (position[i][j - 1] === position[i][j] && position[i][j] === position[i][j + 1]
+       && position[i][j] !== undefined) {
+      return position[i][j];
+    }
+  }
+  for (let i = 0; i < position.length; i += 1) {
+    const j = 1;
+    if (position[j - 1][i] === position[j][i] && position[j][i] === position[j + 1][i]
+       && position[j][i] !== undefined) {
+      return position[j][i];
+    }
+  }
+  if (position[0][0] === position[1][1] && position[1][1] === position[2][2]
+     && position[1][1] !== undefined) {
+    return position[1][1];
+  }
+  if (position[0][2] === position[1][1] && position[1][1] === position[2][0]
+     && position[1][1] !== undefined) {
+    return position[1][1];
+  }
+  return undefined;
 }
 
 
