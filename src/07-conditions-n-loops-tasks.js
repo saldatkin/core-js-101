@@ -330,48 +330,20 @@ function reverseInteger(num) {
  *   5436468789016589 => false
  *   4916123456789012 => false
  */
-function isCreditCardNumber(/* ccn */) {
-  /* let sumEven = 0;
-  let sumOdd = 0;
-  const strCcn = `${ccn}`;
-  const oddArr = [];
-  if (strCcn.length % 2 === 0) {
-    for (let i = 0; i < strCcn.length; i += 1) {
-      if (i % 2 === 0) {
-        sumEven += +strCcn[i];
-      }
-      if (i % 2 === 1) {
-        if ((strCcn[i] * 2) < 9) {
-          oddArr.push(+strCcn[i] * 2);
-        } else {
-          oddArr.push(+strCcn[i] * 2 - 9);
-        }
-      }
-    }
-    for (let i = 0; i < oddArr.length; i += 1) {
-      sumOdd += oddArr[i];
-    }
-  } else
-  if (ccn.length % 2 === 1) {
-    for (let i = 0; i < strCcn.length; i += 1) {
-      if (i % 2 === 1) {
-        sumEven += +strCcn[i];
-      }
-      if (i % 2 === 0) {
-        if ((strCcn[i] * 2) < 9) {
-          oddArr.push(+strCcn[i] * 2);
-        } else {
-          oddArr.push(+strCcn[i] * 2 - 9);
-        }
-      }
-    }
-    for (let i = 0; i < oddArr.length; i += 1) {
-      sumOdd += oddArr[i];
+function isCreditCardNumber(ccn) {
+  const len = ccn.toString().length;
+  const card = ccn.toString().split('');
+  let sum = 0;
+  for (let i = 0; i < len; i += 1) {
+    if (i % 2 === 0) {
+      sum += +card[len - 1 - i];
+    } else if ((card[len - 1 - i] * 2) < 9) {
+      sum += +card[len - 1 - i] * 2;
+    } else {
+      sum += +card[len - 1 - i] * 2 - 9;
     }
   }
-  const sum = sumEven + sumOdd;
-  return sum % 10 === 0; */
-  throw new Error('Not implemented');
+  return (sum % 10) === 0;
 }
 
 
@@ -566,13 +538,19 @@ function getCommonDirectoryPath(pathes) {
  *                         [ 6 ]]
  *
  */
-function getMatrixProduct(/* m1, m2 */) {
-  /* const result = new Array(m1.length).fill(0);
-  result.map(() => new Array(m2[0].length).fill(0));
-  return result.map((row, i) =>
-  row.map((val, j) => m1[i].reduce((sum, elem, index) =>
-  sum + (elem * m2[index][j]), 0))); */
-  throw new Error('Not implemented');
+function getMatrixProduct(m1, m2) {
+  const len = m1.length;
+  const mResult = new Array(len);
+  for (let i = 0; i < len; i += 1) {
+    mResult[i] = new Array(len);
+    for (let j = 0; j < len; j += 1) {
+      mResult[i][j] = 0;
+      for (let k = 0; k < m2.length; k += 1) {
+        mResult[i][j] += m1[i][k] * m2[k][j];
+      }
+    }
+  }
+  return mResult;
 }
 
 
