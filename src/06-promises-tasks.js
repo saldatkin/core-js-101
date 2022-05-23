@@ -110,7 +110,7 @@ function chainPromises(array, action) {
     });
     resolve(arr);
   })
-    .then((value) => value.reduce(action));
+    .then((item) => item.reduce(action));
 }
 
 module.exports = {
